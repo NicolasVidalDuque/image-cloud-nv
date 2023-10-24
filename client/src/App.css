@@ -1,0 +1,103 @@
+#root {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.App{
+  width: 100vw;
+}
+
+.upload-div, .library-div{
+  width: 100%;
+}
+
+.form-upload{
+  padding: 40px 0;
+}
+
+.not-visible{
+  visibility: hidden;
+}
+
+.library-div{
+  padding-top: 2rem;
+}
+
+.photo-galery{
+  display: flex;
+  width: 60vw;
+  margin: 0 auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.img-card{
+  width: 200px;
+  height: 150px;
+  padding: 10px;
+  margin: 15px 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px white solid;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.img-card:hover{
+  transform: scale(1.05);
+}
+
+.img-card img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+} 
+
+.custom-file-upload{
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes scale-img-card{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.form-basic{
+  display:flex;
+  flex-direction:column;
+  margin: 0 auto;
+  width: 60vw;
+}
+
+
