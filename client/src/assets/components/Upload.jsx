@@ -4,7 +4,7 @@ function Upload(props){
        <div className='upload-div'>
           <form onSubmit={props.handleSubmit} className='form-basic form-upload'>
             <label htmlFor='file-upload' className='custom-file-upload'>
-              <img style={{width: '400px'}} src={props.postImage.myFile || upload_png} />
+              <img style={{width: '200px'}} src={props.postImage.myFile || upload_png} className='upload-image'/>
             </label>
             <input
                type='file'

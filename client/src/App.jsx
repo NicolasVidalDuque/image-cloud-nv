@@ -5,6 +5,7 @@ import upload_png from './assets/upload.png'
 import axios from 'axios'
 import Upload from './assets/components/Upload.jsx'
 import Gallery from './assets/components/Gallery.jsx'
+import Header from './assets/components/Header.jsx'
 import './App.css'
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
   return (
     <>
       <div className='App'>
+        <Header />
         <Upload 
           handleSubmit={handleSubmit}
           postImage={postImage}

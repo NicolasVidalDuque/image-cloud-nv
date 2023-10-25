@@ -6,8 +6,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 8080
-const uri = process.env.HOST 
+const port = process.env.PORT || 8080;
+const uri = process.env.DB; 
 
 app.use(express.json());
 app.use(cors({
@@ -39,8 +39,9 @@ app.get('/photos', (req, res) =>{
 
 mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() => {
   try{
+    console.log("Connected to mongodb!")
     app.listen(port ,() => {
-      console.log(`Server connected to http:localhost${port}`);
+      console.log(`Server connected to http://localhost:${port}`);
     })
   }catch(error){
     console.log("Cant connect do db");
