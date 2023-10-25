@@ -7,15 +7,26 @@
   width: 100vw;
 }
 
+
+.content{
+  padding-top:110px;
+}
+
 /* HEADER */
 
 .header {
   display: flex;
+  position: fixed;
+  top: 0; /* Fix it at the top of the viewport */
+  left: 0; /* Fix it at the left side of the viewport */
+  width: 100%; /* Make it full width */
+  background-color: #333; /* Background color of the navigation bar */
+  z-index: 1000;
   justify-content: space-between;
   align-items: center;
-  background-color: #333; /* Dark background color */
   padding: 10px 20px; /* Adjust padding as needed */
   color: #fff; /* Text color */
+  box-sizing:border-box;
 }
 
 .header-left-section {
@@ -24,7 +35,8 @@
 }
 
 .header-logo {
-  width: 50px; /* Set the logo image width as needed */
+  width: 10rem; /* Set the logo image width as needed */
+  border-radius: 20px;
   height: auto; /* Maintain aspect ratio */
 }
 
@@ -36,6 +48,7 @@
 .header-profile-circle {
   width: 40px; /* Set the circle size as needed */
   height: 40px; /* Should be equal for a perfect circle */
+  border: 0;
   border-radius: 50%; /* Make it a circle */
   background-color: #fff; /* Circle background color */
   display: flex;
@@ -48,6 +61,7 @@
   width: 100%; /* Fill the circle with the image */
   height: 100%; /* Maintain aspect ratio */
   border-radius: 50%; /* Ensure it's circular inside the circle */
+  object-fit:cover; 
 }
 
 .header-logout-link {

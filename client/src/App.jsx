@@ -76,15 +76,17 @@ function App() {
     <>
       <div className='App'>
         <Header />
-        <Upload 
-          handleSubmit={handleSubmit}
-          postImage={postImage}
-          handleFileUpload={handleFileUpload}
-        />
-        <Gallery
-          pics={pics}
-          h2={h2}
-        />
+        <div className='content'>
+          <Upload 
+            handleSubmit={handleSubmit}
+            postImage={postImage}
+            handleFileUpload={handleFileUpload}
+          />
+          <Gallery
+            pics={pics}
+            h2={h2}
+          />
+        </div>
       </div>    
       
     </>
