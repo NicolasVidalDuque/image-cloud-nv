@@ -1,10 +1,13 @@
-import express from 'express';
-import connect from './database/conn.js';
-import Post from './model/post.model.js';
-import cors from 'cors'
+const express = require('express');
+const Image = require('./models/image.model.js');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080
+const uri = process.env.HOST 
 
 app.use(express.json());
 app.use(cors({
@@ -14,7 +17,7 @@ app.use(cors({
 app.post('/uploads', async (req, res) => {
   const body = req.body;
   try {
-    const newImage = await Post.create(body);
+    const newImage = await Image.create(body);
     newImage.save();
     res.status(201).json({msg: "new image uploaded"});
   }catch(error){
@@ -24,7 +27,7 @@ app.post('/uploads', async (req, res) => {
 
 app.get('/photos', (req, res) =>{
   try{
-    Post.find({}).then(data => {
+    Image.find({}).then(data => {
       res.json(data);
     }).catch(error => {
       res.json({error});
@@ -34,7 +37,7 @@ app.get('/photos', (req, res) =>{
   }
 })
 
-connect().then(() => {
+mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() => {
   try{
     app.listen(port ,() => {
       console.log(`Server connected to http:localhost${port}`);
