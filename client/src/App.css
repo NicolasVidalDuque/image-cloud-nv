@@ -7,7 +7,6 @@
   width: 100vw;
 }
 
-
 .content{
   padding-top:110px;
 }
@@ -138,12 +137,41 @@
   border: 1px white solid;
   border-radius: 10px;
   transition: transform 0.3s;
+  position:relative;
 }
 
 .img-card:hover{
   transform: scale(1.05);
 }
 
+.circular-delete-icon {
+  position: absolute;
+  height: auto;
+  font-size: 1em;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color:#f2f2f2; 
+  border-radius: 50%; /* Makes it circular */
+  border: #3C3645 solid 2px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.img-card:hover .circular-delete-icon {
+  display: flex;
+}
+.circular-delete-icon i{
+  color: #3C3645;
+}
+.circular-delete-icon:hover{
+  background-color: #ff7956;
+}
 .img-card img{
   max-width: 100%;
   max-height: 100%;

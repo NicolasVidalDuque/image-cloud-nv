@@ -1,3 +1,4 @@
+import ImageCard from '../components/ImageCard.jsx'
 function Gallery(props) {
   return (
         <div className='library-div'> 
@@ -5,9 +6,7 @@ function Gallery(props) {
               {props.pics.data ? 
                 props.pics.data.map(x => {
                   return (
-                    <div className='img-card'>
-                      <img key={x._id} src={x.myFile}/>
-                    </div>
+                    <ImageCard data={x} key={x._id} />
                   )
               }) :
                 <h1>no pics</h1>
