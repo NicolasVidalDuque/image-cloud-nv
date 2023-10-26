@@ -24,6 +24,7 @@ app.post('/uploads', async (req, res) => {
     newImage.save();
     res.status(201).json({msg: "new image uploaded"});
   }catch(error){
+    console.log(error);
     res.status(409).json({message: error.message});
   }
 })
