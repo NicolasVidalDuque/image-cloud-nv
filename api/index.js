@@ -2,7 +2,6 @@ const express = require('express');
 const Image = require('./models/image.model.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const {v4:uuidv4} = require('uuid');
 
 require('dotenv').config();
 
@@ -20,7 +19,6 @@ app.post('/uploads', async (req, res) => {
   try {
     const newImage = await Image.create({
       myFile: body.myFile, 
-      id: uuidv4(),
       author:'test'
     });
     newImage.save();
@@ -42,7 +40,7 @@ app.get('/photos', (req, res) =>{
   }
 })
 
-app.delete('/photos/:id', async (req, res) => {
+app.delete('/deletePhoto/:id', async (req, res) => {
   const id = req.params.id;
   try {
     // Find the post by ID and remove it from the database

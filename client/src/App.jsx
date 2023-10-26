@@ -6,6 +6,7 @@ import axios from 'axios'
 import Upload from './assets/components/Upload.jsx'
 import Gallery from './assets/components/Gallery.jsx'
 import Header from './assets/components/Header.jsx'
+import {link} from './link.jsx'
 import './App.css'
 
 function App() {
@@ -15,8 +16,6 @@ function App() {
   useEffect(() => {
     get_set_photos()
   },[])
-
-  const link = 'http://localhost:8080/'
 
   const reset = () => {
     setPostImage({myFile: ''})
@@ -84,6 +83,7 @@ function App() {
           />
           <Gallery
             pics={pics}
+            get_set={get_set_photos}
             h2={h2}
           />
         </div>

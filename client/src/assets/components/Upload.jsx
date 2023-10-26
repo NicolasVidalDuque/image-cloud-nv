@@ -15,8 +15,8 @@ function Upload(props){
                className='not-visible'
                onChange={(e) => {props.handleFileUpload(e)}}
              />
-              <h3>Upload your tini tiny picture!</h3>
-              <button type='submit'>Submit Photo</button>
+            <h3>Upload your tini tiny picture!</h3>
+            <button type='submit'>Submit Photo</button>
           </form>
         </div>
     )

@@ -6,7 +6,7 @@ function Gallery(props) {
               {props.pics.data ? 
                 props.pics.data.map(x => {
                   return (
-                    <ImageCard data={x} key={x._id} />
+                    <ImageCard data={x} key={x._id} get_set={props.get_set}/>
                   )
               }) :
                 <h1>no pics</h1>
