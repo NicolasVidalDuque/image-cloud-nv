@@ -41,8 +41,8 @@ app.post('/register', async (req, res) => {
     });
     res.status(200).json(newUser);
   }catch(error){
-    console.log(`[ERROR] index.js/register- ${Date.now()}: ${error}`);
-    res.status(409).json({message: error.message});
+    console.log(`[ERROR] index.js/register - ${Date.now()}: ${error}`);
+    res.status(error.status).json({message: error.message});
   }
 })
 app.get('/photos', (req, res) =>{

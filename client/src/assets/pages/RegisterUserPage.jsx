@@ -1,10 +1,18 @@
 import { useState } from "react";
 import axios from "axios";
 import {link} from "../../link.jsx"
+import Yeti from "../profile-icons/yeti.jpeg"
+import Forest from "../profile-icons/forest.jpeg"
+import Sea from "../profile-icons/sea.jpeg"
+import Alien from "../profile-icons/alien.jpeg"
+
 function RegisterUserPage(){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [activeIcon, setactiveIcon] = useState(-1)
+
+  const profileIcons = [Yeti, Forest, Sea, Alien];
 
   const validPassword = (p) => {
     if (p.length < 8){
@@ -34,13 +42,13 @@ function RegisterUserPage(){
             username: username,
             password: password,
             email: email,
-            profilePicture: 'aoeu'
+            profilePicture: profileIcons[activeIcon]
         }, {
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data);
+        console.log(`User - ${response.data._id}: ${response.data.profilePicture}`);
         alert(`Registration ${response.status === 200 ? "Succesfull" : "Falied"}`)
     } catch (error) {
         // Handle any errors here
@@ -48,9 +56,13 @@ function RegisterUserPage(){
     }
   }
 
+  const handleIconSelect = (index) => {
+    setactiveIcon(index);
+  }
+
   return (
     <form className="form-register-user" onSubmit={handleSubmit}>
-      <h1>Register</h1>
+      <h1>New User</h1>
       <input type="text"
         placeholder="Username"
         required
@@ -75,6 +87,17 @@ function RegisterUserPage(){
           setEmail(ev.target.value)
         }
       />
+      <h2>Select your pofile icon!</h2>
+      <ul className="profile-icon-list">
+        {profileIcons.map((icon, index) => {
+            return (
+              <li className={`profile-list-item ${activeIcon === index ? "active-list-icon" : ""}`} onClick={() => handleIconSelect(index)} key={index}>
+                <img src={icon} className="profile-icon" />
+              </li>
+            )
+          }
+        )}
+      </ul>
       <button>Register</button>
     </form>
   )
