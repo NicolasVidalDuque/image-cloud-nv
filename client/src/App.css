@@ -7,7 +7,7 @@
   width: 100vw;
 }
 
-.content{
+.main-content{
   padding-top:110px;
 }
 
@@ -28,7 +28,7 @@
   box-sizing:border-box;
 }
 
-.header-left-section {
+.header-logout-link {
   display: flex;
   align-items: center;
 }
@@ -70,7 +70,7 @@
 }
 
 .header-logout-link:hover {
-  text-decoration: underline;
+  color:inherit;
 }
 
 
@@ -108,9 +108,11 @@
 .upload-image:hover {
   animation: shake 1s ease infinite; /* Adjust duration and easing as needed */
 }
-.form-upload{
-  padding-bottom: 40px;
+
+.upload-line-div{
+  
 }
+
 
 .not-visible{
   visibility: hidden;

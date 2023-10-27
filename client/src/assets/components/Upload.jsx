@@ -2,7 +2,7 @@ import upload_png from '../upload.png'
 function Upload(props){
     return (
        <div className='upload-div'>
-          <form onSubmit={props.handleSubmit} className='form-basic form-upload'>
+          <form onSubmit={props.handleSubmit} className='form-basic '>
             <label htmlFor='file-upload' className='custom-file-upload'>
               <img className='upload-image' style={{width: '200px'}} src={props.postImage.myFile || upload_png} />
             </label>
@@ -16,7 +16,11 @@ function Upload(props){
                onChange={(e) => {props.handleFileUpload(e)}}
              />
             <h3>Upload your tini tiny picture!</h3>
-            <button type='submit'>Submit Photo</button>
+            { props.postImage.myFile ? 
+              <button type='submit'>Submit Photo</button>
+            :
+              <div className='upload-line-div'/>
+            }
           </form>
         </div>
     )

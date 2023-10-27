@@ -24,7 +24,7 @@ app.post('/uploads', async (req, res) => {
     newImage.save();
     res.status(201).json({msg: "new image uploaded"});
   }catch(error){
-    console.log(error);
+    console.log(`[ERROR] index.js/uploads - ${Date.now()}: ${error}`);
     res.status(409).json({message: error.message});
   }
 })
@@ -37,6 +37,7 @@ app.get('/photos', (req, res) =>{
       res.json({error});
     });
   }catch(error){
+    console.log(`[ERROR] index.js/photos - ${Date.now()}: ${error}`);
     res.json({error});
   }
 })
@@ -52,6 +53,7 @@ app.delete('/deletePhoto/:id', async (req, res) => {
       res.status(404).json({ message: "Image not found" });
     }
   } catch (error) {
+    console.log(`[ERROR] index.js/photos - ${Date.now()}: ${error}`);
     res.status(500).json({ error: error.message });
   }
 });
@@ -67,4 +69,5 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
   }
 }).catch((error) => {
   console.log("Invalid Database Connection...");
+  console.log(`[ERROR] index.js/mongoose.connect - ${Date.now()}: ${error}`);
 })
