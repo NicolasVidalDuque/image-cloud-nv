@@ -1,5 +1,6 @@
 const express = require('express');
 const Image = require('./models/image.model.js');
+const User = require('./models/user.model.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -29,6 +30,21 @@ app.post('/uploads', async (req, res) => {
   }
 })
 
+app.post('/register', async (req, res) => {
+  const {username, password, email, profilePicture } = req.body;
+  try{
+    const newUser = await User.create({
+      username,
+      email,
+      password,
+      profilePicture
+    });
+    res.status(200).json(newUser);
+  }catch(error){
+    console.log(`[ERROR] index.js/register- ${Date.now()}: ${error}`);
+    res.status(409).json({message: error.message});
+  }
+})
 app.get('/photos', (req, res) =>{
   try{
     Image.find({}).then(data => {
