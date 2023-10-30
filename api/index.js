@@ -3,12 +3,43 @@ const Image = require('./models/image.model.js');
 const User = require('./models/user.model.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
 
 require('dotenv').config();
 
-const app = express();
+const app = express(); 
 const port = process.env.PORT || 8080;
 const uri = process.env.DB; 
+
+const salt = bcrypt.genSaltSync();
+
+const fieldUserExists = async (fieldToCheck, valueToCheck) => {
+  // Sends a request to db to cofirm if the dinamic fieldToCheck has a duplicated value of valueToCheck.
+  // It returns an arry of promisses of false [P, P, f, P]
+  try{
+    const query = {};
+    query[fieldToCheck] = valueToCheck;
+    const user = await User.findOne(query);
+    if(user){
+      return {fieldToCheck, valueToCheck};
+    }
+    return false;
+  }catch (err){
+    console.log(err);
+    return err;
+  }
+}
+
+const validateForm = async ({profilePicture, password, ...form}) => {
+  // Recieves the form and takes away the profilePicture (not unique) and password.
+  // for each field it sends a request to the db with the function (fieldUserExists)
+  // at last it returns an array of fulfilled array of promises. If the user is found (duplecated when it has to be unique) then the fieldToCheck and valueToCheck are returned; when the user is not found (it is unique) it returns false. The return statement filters all false elements, therefore only the non-unique values (that must be changed) are returned.
+  const requests = Object.keys(form).map( async (field) => {
+    return await fieldUserExists(field, form[field]);
+  });
+  const fulfilled = await Promise.all(requests);
+  return fulfilled.filter(item => item !== false);
+}
 
 app.use(express.json());
 app.use(cors({
@@ -33,18 +64,28 @@ app.post('/uploads', async (req, res) => {
 app.post('/register', async (req, res) => {
   const {username, password, email, profilePicture } = req.body;
   try{
-    const newUser = await User.create({
-      username,
-      email,
-      password,
-      profilePicture
-    });
-    res.status(200).json(newUser);
+    const formValidation = await validateForm(req.body);
+
+    if (formValidation.length > 0){
+      const errors = {}
+      formValidation.forEach(item => errors[item.fieldToCheck] = item.valueToCheck)
+      res.status(409).json(errors);
+    }else{
+      const newUser = await User.create({
+        username,
+        email,
+        password: bcrypt.hashSync(password, salt),
+        profilePicture
+      });
+      console.log(newUser)
+      res.status(200).json(newUser);
+    }
   }catch(error){
     console.log(`[ERROR] index.js/register - ${Date.now()}: ${error}`);
     res.status(error.status).json({message: error.message});
   }
 })
+
 app.get('/photos', (req, res) =>{
   try{
     Image.find({}).then(data => {

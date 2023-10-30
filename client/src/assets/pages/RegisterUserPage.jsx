@@ -48,10 +48,15 @@ function RegisterUserPage(){
                 'Content-Type': 'application/json'
             }
         });
-        console.log(`User - ${response.data._id}: ${response.data.profilePicture}`);
         alert(`Registration ${response.status === 200 ? "Succesfull" : "Falied"}`)
     } catch (error) {
-        // Handle any errors here
+        if(error.response.status === 409){
+          let errorMessage = '';
+          for (const key in error.response.data) {
+            errorMessage += `Please try with a different ${key}: the value ${error.response.data[key]} is already in use\n`;
+          }
+          alert(errorMessage);
+        }
         console.error(error);
     }
   }
