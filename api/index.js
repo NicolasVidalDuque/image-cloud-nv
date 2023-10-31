@@ -56,7 +56,7 @@ app.post('/uploads', async (req, res) => {
   try {
     const newImage = await Image.create({
       myFile: body.myFile, 
-      author:'test'
+      author: body.author
     });
     newImage.save();
     res.status(201).json({msg: "new image uploaded"});

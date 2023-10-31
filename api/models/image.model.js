@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const imageSchema = new Schema({
   myFile: String,
-  author: String,
+  author: {type:Schema.Types.ObjectId, ref:'user'},
 },{
   timestamps: true
 });

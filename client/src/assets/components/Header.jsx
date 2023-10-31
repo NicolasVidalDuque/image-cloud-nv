@@ -24,6 +24,8 @@ function Header() {
   const logout = async () => {
     const response = await axios.post(link + 'logout',null, {withCredentials: true});
     setUserInfo(null);
+    location.reload();
+    alert('See you soon...')
   }
 
   const username = userInfo?.username

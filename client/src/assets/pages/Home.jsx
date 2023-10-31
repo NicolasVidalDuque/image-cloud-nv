@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import upload_png from '../upload.png'
 import axios from 'axios'
 import Upload from '../components/Upload.jsx'
 import Gallery from '../components/Gallery.jsx'
 import {link} from '../../link.jsx'
+import {UserContext} from '../context/UserContext.jsx'
 
 function Home() {
   // TODO: manage state from /home route (pre-user auth in nav). Make it a Component like cloud
   const [postImage, setPostImage] = useState({myFile: ''});
   const [pics, setPics] = useState([]);
+  const {userInfo} = useContext(UserContext);
   useEffect(() => {
     get_set_photos()
   },[])
@@ -33,9 +35,13 @@ function Home() {
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
+    if(!userInfo){
+      alert('Please create an account to upload your pictures');
+      return
+    }
     if (file.size < 100000){
       const base64 = await convert_to_base64(file);
-      setPostImage( (prev) => ({ ...prev, myFile: base64}));
+      setPostImage( (prev) => ({ ...prev, author:userInfo.id, myFile: base64}));
     }else{
       alert("File too large, must be under 100kb");
     }
@@ -44,6 +50,7 @@ function Home() {
   const createPost = async (newImage) => {
     return new Promise(async (resolve, reject) => {
       try{
+        console.log(newImage)
         await axios.post(link + 'uploads', newImage);
         resolve()
       }catch(error){

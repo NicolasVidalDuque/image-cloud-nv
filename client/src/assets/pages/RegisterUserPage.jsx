@@ -5,12 +5,14 @@ import Yeti from "../profile-icons/yeti.jpeg"
 import Forest from "../profile-icons/forest.jpeg"
 import Sea from "../profile-icons/sea.jpeg"
 import Alien from "../profile-icons/alien.jpeg"
+import {useNavigate} from "react-router-dom"
 
 function RegisterUserPage(){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [activeIcon, setactiveIcon] = useState(-1)
+  const navigate = useNavigate();
 
   const profileIcons = [Yeti, Forest, Sea, Alien];
 
@@ -48,7 +50,12 @@ function RegisterUserPage(){
                 'Content-Type': 'application/json'
             }
         });
-        alert(`Registration ${response.status === 200 ? "Succesfull" : "Falied"}`)
+        if(response.status === 200){
+          alert('Registration Succesful');
+          navigate('/login');
+        }else{
+          alert('Registration Failed')
+        }
     } catch (error) {
         if(error.response.status === 409){
           let errorMessage = '';
