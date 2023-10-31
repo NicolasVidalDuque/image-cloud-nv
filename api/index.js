@@ -139,11 +139,9 @@ app.post('/logout', (req, res) =>{
     res.clearCookie("token").json('ok');
 });
 
-app.get('/photos', (req, res) =>{
-  const {author} = req.query;
-  if (!author){
-    res.status(404).json("Author = Null, please login");
-  }
+app.get('/photos/:author', async (req, res) =>{
+  const author = req.params.author;
+  
   try{
     Image.find({author}).then(data => {
       res.json(data);

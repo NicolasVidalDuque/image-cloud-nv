@@ -68,8 +68,10 @@ function Home() {
   }
 
   const get_set_photos = async () => {
-    axios.get(link + 'photos',{params: {author: userInfo ? userInfo.id : null}}).then(res => {
-      setPics(res)
+    const author = userInfo?.id;
+    const route = link + 'photos/' + author;
+    axios.get(route).then(res => {
+      setPics(res);
     });
   }
   
