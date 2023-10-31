@@ -45,6 +45,59 @@
 .header-right-section {
   display: flex;
   align-items: center;
+  flex-direction:column;
+}
+
+.header-right-section:hover{
+  .header-dropdown-list{
+    display: block;
+  }
+}
+
+.dropdow-show{
+  display: block;
+}
+
+.header-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.header-dropdown:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-dropdown-list{
+  list-style: none;
+  text-decoration: none;
+  position: absolute;
+  padding: 0;
+  z-index: 999;
+  top: 50px;
+  border: 1px white solid;
+  border-radius:20px;
+  background-color: #333;
+  padding: 10px;
+  display:none;
+}
+
+.header-dropdown-list li{
+  padding: 6px 0;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.header-dropdown-list li:hover{
+  color: #646cff;
+}
+
+.header-dropdown-list a{
+  color: white;
 }
 
 .header-profile-circle {
@@ -56,7 +109,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px; /* Adjust the margin as needed */
 }
 
 .header-profile-image {
@@ -66,14 +118,22 @@
   object-fit:cover; 
 }
 
-.header-logout-link {
+.header-logout-h {
   color: #fff; /* Link text color */
   text-decoration: none;
-  font-weight: bold;
+  text-align: center;
+  margin:0;
+  
 }
 
-.header-logout-link:hover {
+.header-logout-h:hover {
   color:inherit;
+}
+
+.header-dropdown-right{
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 
