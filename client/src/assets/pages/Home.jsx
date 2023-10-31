@@ -50,7 +50,6 @@ function Home() {
   const createPost = async (newImage) => {
     return new Promise(async (resolve, reject) => {
       try{
-        console.log(newImage)
         await axios.post(link + 'uploads', newImage);
         resolve()
       }catch(error){
@@ -69,7 +68,7 @@ function Home() {
   }
 
   const get_set_photos = async () => {
-    axios.get(link + 'photos').then(res => {
+    axios.get(link + 'photos',{params: {author: userInfo ? userInfo.id : null}}).then(res => {
       setPics(res)
     });
   }

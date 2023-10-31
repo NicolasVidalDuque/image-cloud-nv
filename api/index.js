@@ -97,6 +97,7 @@ app.post('/login', async (req, res) => {
     if(userDoc === null){
         return res.status(400).json('User does not exist');
     }
+    console.log(userDoc);
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if(passOk){
         // .sign generates a json web token based on the secret key.
@@ -139,8 +140,12 @@ app.post('/logout', (req, res) =>{
 });
 
 app.get('/photos', (req, res) =>{
+  const {author} = req.query;
+  if (!author){
+    res.status(404).json("Author = Null, please login");
+  }
   try{
-    Image.find({}).then(data => {
+    Image.find({author}).then(data => {
       res.json(data);
     }).catch(error => {
       res.json({error});
