@@ -208,6 +208,21 @@
   transform: scale(1.05);
 }
 
+.circular-container-icon{
+  position: absolute;
+  height: auto;
+  font-size: 1em;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes it circular */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
 .circular-delete-icon {
   position: absolute;
   height: auto;
@@ -227,7 +242,7 @@
   transition: background-color 0.5s;
 }
 
-.img-card:hover .circular-delete-icon {
+.img-card:hover .circular-container-icon {
   display: flex;
 }
 .circular-delete-icon i{

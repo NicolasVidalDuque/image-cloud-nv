@@ -14,6 +14,7 @@ const port = process.env.PORT || 8080;
 const uri = process.env.DB; 
 const salt = bcrypt.genSaltSync();
 const secret = process.env.SECRET;
+const ObjectId = mongoose.Types.ObjectId;
 
 
 app.use(express.json());
@@ -82,7 +83,6 @@ app.post('/register', async (req, res) => {
         password: bcrypt.hashSync(password, salt),
         profilePicture
       });
-      console.log(newUser)
       res.status(200).json(newUser);
     }
   }catch(error){
@@ -97,7 +97,6 @@ app.post('/login', async (req, res) => {
     if(userDoc === null){
         return res.status(400).json('User does not exist');
     }
-    console.log(userDoc);
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if(passOk){
         // .sign generates a json web token based on the secret key.
@@ -141,7 +140,7 @@ app.post('/logout', (req, res) =>{
 
 app.get('/photos/:author', async (req, res) =>{
   const author = req.params.author;
-  
+  const lookup = author.length > 3 ? author : '65418e7fba8bb956fb03860e'; 
   try{
     Image.find({author}).then(data => {
       res.json(data);

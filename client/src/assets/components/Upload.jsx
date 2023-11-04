@@ -16,6 +16,7 @@ function Upload(props){
                onChange={(e) => {props.handleFileUpload(e)}}
              />
             <h3>Upload your tini tiny picture!</h3>
+            <p>(Only images below 100kb)</p>
             { props.postImage.myFile ? 
               <button type='submit'>Submit Photo</button>
             :

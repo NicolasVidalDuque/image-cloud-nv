@@ -3,13 +3,13 @@ function Gallery(props) {
   return (
         <div className='library-div'> 
            <div className='photo-galery'>
-              {props.pics.data ? 
+              {props.pics.data?.length > 0 ? 
                 props.pics.data.map(x => {
                   return (
                     <ImageCard data={x} key={x._id} get_set={props.get_set}/>
                   )
               }) :
-                <h1>no pics</h1>
+                <h1>Upload your first image</h1>
               }
           </div>
            <form onSubmit={props.h2} className='form-basic'>
