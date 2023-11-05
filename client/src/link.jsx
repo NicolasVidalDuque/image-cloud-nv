@@ -1,1 +1,1 @@
-export const link = 'https://nv-image-cloud-storage.onrender.com/'; 
+export const link = 'https://nv-image-cloud-storage-api.onrender.com'
