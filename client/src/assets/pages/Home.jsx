@@ -35,7 +35,7 @@ function Home() {
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
-    if(!userInfo){
+    if(!userInfo.username){
       alert('Please create an account to upload your pictures');
       return
     }

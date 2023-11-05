@@ -29,11 +29,11 @@ function ImageCard(props) {
 
   return (
     <div  imgid={props.data._id} className="img-card">
-      <div className="circular-container-icon" onClick={handleDeleteClick}>
+      <div className="circular-container-icon circular-delete-icon" onClick={handleDeleteClick}>
         <i className="fa-solid fa-trash" aria-hidden='true'></i>
       </div>
       <img src={props.data.myFile} />
-      <a className='circular-download-icon' href={props.data.myFile} download>
+      <a className='circular-container-icon circular-download-icon' href={props.data.myFile} download>
         <i className="fa-solid fa-cloud-arrow-down" aria-hidden='true'></i>
       </a>
 

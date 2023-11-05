@@ -172,11 +172,6 @@
   animation: shake 1s ease infinite; /* Adjust duration and easing as needed */
 }
 
-.upload-line-div{
-  
-}
-
-
 .not-visible{
   visibility: hidden;
 }
@@ -220,26 +215,24 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.5s;
 }
 
 .circular-delete-icon {
-  position: absolute;
-  height: auto;
-  font-size: 1em;
   top: -20px;
   right: -20px;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
   background-color:#f2f2f2; 
-  border-radius: 50%; /* Makes it circular */
   border: #3C3645 solid 2px;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
+}
+
+.circular-download-icon{
+  font-size: 3em;
+  color: rgba(242,242,242,.6);
+  transition: color 0.3s;
+}
+
+.circular-download-icon:hover{
+  color: rgb(242,242,242);
 }
 
 .img-card:hover .circular-container-icon {
