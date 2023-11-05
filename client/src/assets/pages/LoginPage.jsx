@@ -32,7 +32,11 @@ function RegisterUserPage(){
       
     } catch (error) {
       // Handle any Axios or network error here
-      console.error('An error occurred:', error);
+      if(error.response.status === 400){
+        alert(error.response.data)
+      }else{
+        console.error('An error occurred:', error);
+      }
     }
   }
   return (

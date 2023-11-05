@@ -16,7 +16,6 @@ const salt = bcrypt.genSaltSync();
 const secret = process.env.SECRET;
 const ObjectId = mongoose.Types.ObjectId;
 
-
 app.use(express.json());
 app.use(cors({
   origin:process.env.ORIGIN,
@@ -94,6 +93,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const {email, password} = req.body;
     const userDoc = await User.findOne({email});
+    console.log(email)
     if(userDoc === null){
         return res.status(400).json('User does not exist');
     }
@@ -114,7 +114,7 @@ app.post('/login', async (req, res) => {
 			      });
         });
     }else{
-        res.status(400).json('wrong credentials');
+        res.status(400).json('Wrong credentials: review email or password');
     }
 });
 
@@ -173,7 +173,7 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
   try{
     console.log("Connected to mongodb!")
     app.listen(port ,() => {
-      console.log(`Server connected to http://localhost:${port}`);
+      console.log(`Server hosted at http://localhost:${port}`);
     })
   }catch(error){
     console.log("Cant connect do db");
