@@ -1,1 +1,1 @@
-export const link = 'http://localhost:8080/'; 
+export const link = 'https://nv-image-cloud-storage.onrender.com/'; 
