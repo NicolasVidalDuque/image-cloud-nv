@@ -19,7 +19,7 @@ const ObjectId = mongoose.Types.ObjectId;
 
 app.use(express.json());
 app.use(cors({
-  origin:'http://localhost:3333',
+  origin:process.env.ORIGIN,
   credentials: true
 }));
 app.use(cookieParser());
